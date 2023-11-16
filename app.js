@@ -87,5 +87,5 @@ async function audioDownload(url) {
 //   });
 // });
 
-audioDownload();
-videoDownload();
+audioDownload(url);
+videoDownload(url);
