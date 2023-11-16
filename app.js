@@ -1,12 +1,12 @@
-const { exec } = require("child_process");
-const fs = require("fs");
+// const { exec } = require("child_process");
+// const fs = require("fs");
 const youtubedl = require("youtube-dl-exec");
 const path = require("path");
-const inquirer = require("inquirer");
+// const inquirer = require("inquirer");
 
 // const url = "https://www.youtube.com/watch?v=9bZkp7q19f0"; // youtube video
 // const url = "https://x.com/rub3z_/status/1724552910078435405?s=20"; //  twitter video
-// const url = "https://twitter.com/i/status/1724206013237064067"; //  twitter video2
+const url = "https://twitter.com/i/status/1724206013237064067"; //  twitter video2
 // const url =
 //   "https://www.instagram.com/reel/Czkp1R5KFIp/?utm_source=ig_web_copy_link"; // instagram video
 
@@ -34,58 +34,58 @@ let videoSettings = {
 };
 
 // asking user for audio or video
-let question = [
-  {
-    type: "list",
-    name: "outputType",
-    message: "What do you want to download?",
-    choices: [
-      { name: "Only audio", value: "audio" },
-      { name: "Audio and video", value: "video" },
-    ],
-  },
-];
+// let question = [
+//   {
+//     type: "list",
+//     name: "outputType",
+//     message: "What do you want to download?",
+//     choices: [
+//       { name: "Only audio", value: "audio" },
+//       { name: "Audio and video", value: "video" },
+//     ],
+//   },
+// ];
 
-// now we will ask user for url
-let urlQuestion = [
-  {
-    type: "input",
-    name: "url",
-    message: "Enter the url of video",
-  },
-];
+// // now we will ask user for url
+// let urlQuestion = [
+//   {
+//     type: "input",
+//     name: "url",
+//     message: "Enter the url of video",
+//   },
+// ];
 
 // const video = exec(`youtube-dl ${url} -x --audio-format mp3`, options);
-async function videoDownload(url1) {
+async function videoDownload(url) {
   try {
     // await youtubedl(url, settings, { cwd: __dirname });
-    await youtubedl(url1, videoSettings, options);
+    await youtubedl(url, videoSettings, options);
   } catch (error) {
     console.log(error);
   }
 }
 
-async function audioDownload(url1) {
+async function audioDownload(url) {
   try {
     // await youtubedl(url, settings, { cwd: __dirname });
-    await youtubedl(url1, audioSettings, options);
+    await youtubedl(url, audioSettings, options);
   } catch (error) {
     console.log(error);
   }
 }
 
-inquirer.prompt(urlQuestion).then((answer) => {
-  url2 = answer.url;
-  inquirer.prompt(question).then((answer) => {
-    if (answer.outputType === "audio") {
-      console.log("Downloading audio");
-      audioDownload(url2);
-    } else {
-      console.log("Downloading video");
-      videoDownload(url2);
-    }
-  });
-});
+// inquirer.prompt(urlQuestion).then((answer) => {
+//   url2 = answer.url;
+//   inquirer.prompt(question).then((answer) => {
+//     if (answer.outputType === "audio") {
+//       console.log("Downloading audio");
+//       audioDownload(url2);
+//     } else {
+//       console.log("Downloading video");
+//       videoDownload(url2);
+//     }
+//   });
+// });
 
-// audioDownload();
-// videoDownload();
+audioDownload();
+videoDownload();
